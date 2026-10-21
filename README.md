@@ -21,40 +21,11 @@ Echo **never sends email**. It only creates drafts.
 
 ## How it works
 
-```mermaid
-flowchart TD
-    Z["Zoom meeting ends<br/>transcript ready"] -->|webhook| W
+<p align="center">
+  <img src="docs/architecture.svg" alt="Echo architecture: ingest, understand, draft, review, with voice profile, learning loop, reconciliation job and eval gate" width="100%">
+</p>
 
-    W["Webhook receiver<br/>verify signature · dedupe"]:::guard
-    RC["Daily reconciliation<br/>catch missed meetings"]:::guard
-    W --> F["Fetch + clean transcript<br/>plain code · retries"]
-    RC -.-> F
-
-    CAL[("Calendar")]:::ctx --> A
-    F --> A["Attendee match<br/>unknowns flagged, never guessed"]:::guard
-
-    A --> E["Extract facts<br/>Sonnet 5.5 · JSON schema · evidence quotes"]:::guard
-    E --> D["Write in your voice<br/>uses only extracted facts"]:::ai
-    D --> Q["Quality check<br/>every claim traced to a fact"]:::guard
-
-    VP[("Voice profile in Notion<br/>playbook · example pairs<br/>templates · do/don't rules")]:::ctx
-    VP --> E
-    VP --> D
-
-    Q --> N["Notion draft page<br/>Status: Draft + flags to check"]
-    N --> H["You review, edit, send<br/>then mark Status: Sent"]:::human
-    H --> L["Learning loop<br/>AI draft vs your final"]:::ai
-    L -->|"proposed updates,<br/>you approve"| VP
-
-    EV["Eval set of past meetings<br/>run before any prompt/model change"]:::guard -.-> E
-
-    classDef guard fill:#FAEEDA,stroke:#BA7517,stroke-width:2px,color:#412402
-    classDef ai fill:#EEEDFE,stroke:#534AB7,color:#26215C
-    classDef ctx fill:#E1F5EE,stroke:#0F6E56,color:#04342C
-    classDef human fill:#F1EFE8,stroke:#444441,stroke-width:2px,color:#2C2C2A
-```
-
-**Legend:** 🟧 amber = safeguard (the parts that keep the system airtight) · 🟪 purple = AI step · 🟩 teal = your context · ⬜ gray = you
+Amber tags mark the **safeguards**, the parts that keep the system airtight. They are explained in [Making it airtight](#making-it-airtight).
 
 ### Step by step
 

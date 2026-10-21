@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" width="1200" height="570" role="img" aria-labelledby="t d">
+  <title id="t">Echo architecture</title>
+  <desc id="d">Four-stage pipeline: Zoom webhook ingest, fact extraction with Claude, writing in your voice, and a Notion draft you review and send. A voice profile feeds stages two and three, a learning loop updates it from your edits, a reconciliation job catches missed meetings, and an eval gate protects changes.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#9CA3AF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .sans { font-family: Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .h1 { font-size: 22px; font-weight: 600; fill: #111827; }
+      .sub { font-size: 13px; fill: #6B7280; }
+      .stage { font-size: 11px; letter-spacing: 1.5px; fill: #9CA3AF; }
+      .title { font-size: 16px; font-weight: 600; fill: #111827; }
+      .meta { font-size: 11px; fill: #6B7280; }
+      .body { font-size: 12.5px; fill: #374151; }
+      .chip { font-size: 11px; fill: #92400E; }
+      .t14 { font-size: 14px; font-weight: 600; fill: #111827; }
+      .t12 { font-size: 12px; fill: #6B7280; }
+      .flow { stroke: #9CA3AF; stroke-width: 1.4; fill: none; }
+    </style>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1199" height="569" rx="16" fill="#FFFFFF" stroke="#E5E7EB"/>
+
+  <text class="sans h1" x="40" y="56">Echo</text>
+  <text class="sans sub" x="40" y="80">Zoom transcript → follow-up email draft, in your voice</text>
+  <text class="mono meta" x="1160" y="56" text-anchor="end">human-in-the-loop · drafts only</text>
+
+  <!-- stage labels -->
+  <text class="mono stage" x="40"  y="116">01 · INGEST</text>
+  <text class="mono stage" x="330" y="116">02 · UNDERSTAND</text>
+  <text class="mono stage" x="620" y="116">03 · DRAFT</text>
+  <text class="mono stage" x="910" y="116">04 · REVIEW</text>
+
+  <!-- card 1 -->
+  <rect x="40" y="130" width="250" height="188" rx="12" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text class="sans title" x="60" y="162">Zoom webhook</text>
+  <text class="mono meta"  x="60" y="184">recording.transcript_completed</text>
+  <text class="sans body"  x="60" y="208">Fetch + clean .vtt transcript</text>
+  <text class="sans body"  x="60" y="226">Match attendees via calendar</text>
+  <line x1="60" y1="242" x2="270" y2="242" stroke="#E5E7EB"/>
+  <rect x="60" y="254" width="154" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="137" y="269" text-anchor="middle">HMAC signature check</text>
+  <rect x="60" y="282" width="180" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="150" y="297" text-anchor="middle">idempotent: meeting UUID</text>
+
+  <!-- card 2 -->
+  <rect x="330" y="130" width="250" height="188" rx="12" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text class="sans title" x="350" y="162">Extract facts</text>
+  <text class="mono meta"  x="350" y="184">claude-sonnet-5-5 · JSON schema</text>
+  <text class="sans body"  x="350" y="208">Decisions, action items,</text>
+  <text class="sans body"  x="350" y="226">owners, deadlines, quotes</text>
+  <line x1="350" y1="242" x2="560" y2="242" stroke="#DDD6FE"/>
+  <rect x="350" y="254" width="174" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="437" y="269" text-anchor="middle">evidence quote per fact</text>
+  <rect x="350" y="282" width="161" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="430.5" y="297" text-anchor="middle">unknown beats a guess</text>
+
+  <!-- card 3 -->
+  <rect x="620" y="130" width="250" height="188" rx="12" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text class="sans title" x="640" y="162">Write in your voice</text>
+  <text class="mono meta"  x="640" y="184">facts → email · QA pass</text>
+  <text class="sans body"  x="640" y="208">Uses extracted facts only</text>
+  <text class="sans body"  x="640" y="226">Flags anything uncertain</text>
+  <line x1="640" y1="242" x2="850" y2="242" stroke="#DDD6FE"/>
+  <rect x="640" y="254" width="134" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="707" y="269" text-anchor="middle">facts-only writer</text>
+  <rect x="640" y="282" width="141" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="710.5" y="297" text-anchor="middle">every claim traced</text>
+
+  <!-- card 4 -->
+  <rect x="910" y="130" width="250" height="188" rx="12" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text class="sans title" x="930" y="162">Notion draft</text>
+  <text class="mono meta"  x="930" y="184">status: draft → sent</text>
+  <text class="sans body"  x="930" y="208">You edit, copy, and send</text>
+  <text class="sans body"  x="930" y="226">Flags pinned to the top</text>
+  <line x1="930" y1="242" x2="1140" y2="242" stroke="#E5E7EB"/>
+  <rect x="930" y="254" width="134" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="997" y="269" text-anchor="middle">never sends email</text>
+  <rect x="930" y="282" width="148" height="22" rx="11" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="mono chip" x="1004" y="297" text-anchor="middle">unmatched → flagged</text>
+
+  <!-- main flow -->
+  <line class="flow" x1="292" y1="224" x2="326" y2="224" marker-end="url(#a)"/>
+  <line class="flow" x1="582" y1="224" x2="616" y2="224" marker-end="url(#a)"/>
+  <line class="flow" x1="872" y1="224" x2="906" y2="224" marker-end="url(#a)"/>
+
+  <!-- row 2 -->
+  <rect x="40" y="356" width="250" height="60" rx="12" fill="#FFFBEB" stroke="#F59E0B" stroke-dasharray="5 4"/>
+  <text class="sans t14" x="60" y="381">Reconciliation job</text>
+  <text class="sans t12" x="60" y="401">daily sweep for missed meetings</text>
+
+  <rect x="330" y="356" width="540" height="60" rx="12" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text class="sans t14" x="350" y="381">Voice profile <tspan class="mono meta" dx="6">notion</tspan></text>
+  <text class="sans t12" x="350" y="401">playbook · facts → email pairs · meeting templates · do / don't rules</text>
+
+  <rect x="910" y="356" width="250" height="60" rx="12" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text class="sans t14" x="930" y="381">Learning loop</text>
+  <text class="sans t12" x="930" y="401">draft vs sent → you approve</text>
+
+  <line class="flow" x1="165" y1="354" x2="165" y2="322" stroke-dasharray="4 4" marker-end="url(#a)"/>
+  <line class="flow" x1="455" y1="354" x2="455" y2="322" marker-end="url(#a)"/>
+  <line class="flow" x1="745" y1="354" x2="745" y2="322" marker-end="url(#a)"/>
+  <line class="flow" x1="1035" y1="320" x2="1035" y2="352" marker-end="url(#a)"/>
+  <line class="flow" x1="908" y1="386" x2="874" y2="386" marker-end="url(#a)"/>
+
+  <!-- eval gate -->
+  <rect x="40" y="446" width="1120" height="44" rx="12" fill="#FFFBEB" stroke="#F59E0B" stroke-dasharray="5 4"/>
+  <text class="sans" x="600" y="473" text-anchor="middle"><tspan class="mono chip" font-weight="700" letter-spacing="1.5">EVAL GATE</tspan><tspan class="sans body" dx="12">past meetings are re-run before any prompt or model change ships</tspan></text>
+
+  <!-- legend -->
+  <rect x="40" y="522" width="12" height="12" rx="3" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text class="sans t12" x="60" y="532">safeguard</text>
+  <rect x="150" y="522" width="12" height="12" rx="3" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text class="sans t12" x="170" y="532">AI step (Claude)</text>
+  <rect x="300" y="522" width="12" height="12" rx="3" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text class="sans t12" x="320" y="532">your context</text>
+  <rect x="420" y="522" width="12" height="12" rx="3" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text class="sans t12" x="440" y="532">system / you</text>
+  <text class="mono meta" x="1160" y="532" text-anchor="end">dashed = scheduled / gate</text>
+</svg>
