@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" width="1200" height="570" role="img" aria-labelledby="t d">
   <title id="t">Echo architecture</title>
-  <desc id="d">Four-stage pipeline: Zoom webhook ingest, fact extraction with Claude, writing in your voice, and a Notion draft you review and send. A voice profile feeds stages two and three, a learning loop updates it from your edits, a reconciliation job catches missed meetings, and an eval gate protects changes.</desc>
+  <desc id="d">Four-stage pipeline: Zoom webhook ingest, fact extraction with Claude, writing in your voice, and a draft in the Echo web app that you review and send (optionally mirrored to Notion). A voice profile feeds stages two and three, a learning loop updates it from your edits, a reconciliation job catches missed meetings, and an eval gate protects changes.</desc>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M2 1L8 5L2 9" fill="none" stroke="#6E7681" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -71,10 +71,10 @@
 
   <!-- card 4 -->
   <rect x="910" y="130" width="250" height="188" rx="12" fill="#161B22" stroke="#30363D"/>
-  <text class="sans title" x="930" y="162">Notion draft</text>
-  <text class="mono meta"  x="930" y="184">status: draft → sent</text>
+  <text class="sans title" x="930" y="162">Echo inbox</text>
+  <text class="mono meta"  x="930" y="184">web app · notion mirror optional</text>
   <text class="sans body"  x="930" y="208">You edit, copy, and send</text>
-  <text class="sans body"  x="930" y="226">Flags pinned to the top</text>
+  <text class="sans body"  x="930" y="226">Mark sent, then it learns</text>
   <line x1="930" y1="242" x2="1140" y2="242" stroke="#30363D"/>
   <rect x="930" y="254" width="134" height="22" rx="11" fill="#261D0B" stroke="#D29922"/>
   <text class="mono chip" x="997" y="269" text-anchor="middle">never sends email</text>
@@ -92,7 +92,7 @@
   <text class="sans t12" x="60" y="401">daily sweep for missed meetings</text>
 
   <rect x="330" y="356" width="540" height="60" rx="12" fill="#0E2620" stroke="#2EA387"/>
-  <text class="sans t14" x="350" y="381">Voice profile <tspan class="mono meta" dx="6">notion</tspan></text>
+  <text class="sans t14" x="350" y="381">Voice profile <tspan class="mono meta" dx="6">versioned</tspan></text>
   <text class="sans t12" x="350" y="401">playbook · facts → email pairs · meeting templates · do / don't rules</text>
 
   <rect x="910" y="356" width="250" height="60" rx="12" fill="#1C1830" stroke="#6E56CF"/>

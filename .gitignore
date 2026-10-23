@@ -7,19 +7,21 @@
 data/
 examples/private/
 *.vtt
+!samples/*.vtt
 
 # Local state
 *.db
 *.sqlite
 
-# Python
-__pycache__/
-*.pyc
-.venv/
-venv/
-
-# Node
+# Next.js / Node
+.next/
+out/
 node_modules/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local tooling
+.claude/
 
 # OS / editor
 .DS_Store

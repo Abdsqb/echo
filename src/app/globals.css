@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0d1117;
+  --color-panel: #161b22;
+  --color-panel-2: #1c2128;
+  --color-line: #30363d;
+  --color-fg: #e6edf3;
+  --color-soft: #c9d1d9;
+  --color-muted: #8b949e;
+  --color-accent: #8b7cf6;
+  --color-accent-bg: #1c1830;
+  --color-guard: #d29922;
+  --color-guard-fg: #f2cc60;
+  --color-guard-bg: #261d0b;
+  --color-ctx: #2ea387;
+  --color-ctx-bg: #0e2620;
+  --color-danger: #f85149;
+  --color-danger-bg: #2d1214;
+  --color-ok: #3fb950;
+  --font-sans: Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-panel;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg border border-line bg-panel-2 px-3 py-1.5 text-sm text-fg transition hover:border-muted disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg border border-accent bg-accent px-3 py-1.5 text-sm font-medium text-white transition hover:brightness-110 disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center gap-2 rounded-lg border border-danger/50 bg-danger-bg px-3 py-1.5 text-sm text-danger transition hover:border-danger;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-bg px-3 py-2 text-sm text-fg outline-none placeholder:text-muted focus:border-accent;
+  }
+  .label {
+    @apply mb-1 block font-mono text-[11px] tracking-wider text-muted uppercase;
+  }
+  .stage {
+    @apply font-mono text-[11px] tracking-[0.15em] text-muted uppercase;
+  }
+}
